@@ -1,15 +1,16 @@
-import flask
-#from flask import Flask
+# import flask
+from flask import Flask
 
-app = flask.Flask(__name__)
+# app = flask.Flask(__name__)
+app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
     return 'Hello wsgi.py!'
     # return 42   # ошибка, возвращается только строковое представление
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app.run(debug=True)
 
 # flask --app .\lec11_1.py run (21:00) # - в VSC не работает
 """
