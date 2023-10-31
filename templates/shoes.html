@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%block content%}
+{%for sh in shoes%}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{sh.title_shoes}}</h5>
+        <p class="card-text">{{sh.colour}}</p>
+        <p class="card-text">{{sh.size}}</p>
+        <p>{{sh.price}}</p>
+    </div>
+</div>
+{%endfor%}
+{%endblock%}
