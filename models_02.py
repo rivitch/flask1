@@ -29,26 +29,26 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    #posts = db.relationship('Post', backref='author', lazy=True)  # добавление
+    posts = db.relationship('Post', backref='author', lazy=True)  # добавление
     def __repr__(self):
         return f'User({self.username}, {self.email})'  #вывод инфы о  пользователе
     
-# class Post(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     title = db.Column(db.String(80), nullable=False)
-#     content = db.Column(db.Text, nullable=False)
-#     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-#     def __repr__(self):
-#         return f'Post({self.title}, {self.content})'
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    def __repr__(self):
+        return f'Post({self.title}, {self.content})'
     
-# #--------
-# #Создание связей между моделями
-# class Comment(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     content = db.Column(db.Text, nullable=False)
-#     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
-#     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-#     def __repr__(self):
-#         return f'Comment({self.content})'
+#--------
+#Создание связей между моделями
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    def __repr__(self):
+        return f'Comment({self.content})'

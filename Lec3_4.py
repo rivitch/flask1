@@ -1,7 +1,7 @@
 # Создание таблиц в базе данных
 #import click
 from flask import Flask
-from models_05 import db #, User#, Post, Comment
+from models_05 import db , User, Post, Comment
 from commands import cli
 
 app = Flask(__name__)
@@ -13,11 +13,11 @@ db.init_app(app)
 def index():
     return 'Привет'
 
-# @app.cli.command("init-db")
-# def init_db():
-#     # показать ошибку с неверным  wsgi.py
-#     db.create_all()
-#     print('OK')
+@app.cli.command("init-db")
+def init_db():
+    # показать ошибку с неверным  wsgi.py
+    db.create_all()
+    print('OK')
 
 
 
