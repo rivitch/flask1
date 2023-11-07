@@ -54,19 +54,17 @@ def fill_tables():
         new_user = User(username=f'user{user}',
         email=f'user{user}@mail.ru')
         db.session.add(new_user)
-        db.session.commit()
+    db.session.commit()
     # Добавляем статьи
     for post in range(1, count ** 2):
-        author = User.query.filter_by(username=f'user{post %
-        count + 1}').first()
-        new_post = Post(title=f'Post title {post}',
-        content=f'Post content {post}', author=author)
+        author = User.query.filter_by(username=f'user{post % count + 1}').first()
+        new_post = Post(title=f'Post title {post}', content=f'Post content {post}', author=author)
         db.session.add(new_post)
-        db.session.commit()
+    db.session.commit()
 
 # Получение данных из базы данных
 @app.route('/users/')
-    def all_users():
+def all_users():
     users = User.query.all()
     context = {'users': users}
     return render_template('users.html', **context)

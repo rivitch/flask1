@@ -1,10 +1,15 @@
 # файл app.py
 
-from flask import Flask
+from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy  # для подключения к базе данных SQLite
 from datetime import datetime
 
 app = Flask(__name__)
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../../instance/mydatabase.db' # запуск не через консоль, не через wsgi, а 
+                                                                        # напрямую из этого 
+                                                                        #файла вызвать add.run. 2 точки - выйти на уровень вверх, т.е из
+                                                                        # папки instance, следующие 2 - корень проекта, и уже там будет 
+                                                                        # каталог instance если вдруг он на другом сервере
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'  # создается папка instance
 db = SQLAlchemy()
 db.init_app(app)
@@ -35,6 +40,27 @@ class Comment(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     def __repr__(self):
         return f'Comment({self.content})' 
+
+#app.cli.add_command(cli) # инициализация через командную строку
+
+@app.route('/')# через route можно добавлять непосредственно с сайта!!!!! 
+@app.route('/index/')
+def index():
+    return 'Привет'
+
+#app.cli.add_command(cli) # инициализация через командную строку
+
+@app.route('/data/')# через route можно добавлять непосредственно с сайта!!!!! 
+def data():
+    return 'Ваши данные' 
+
+# @app.route('/users/')
+# def all_users():
+#     users = User.query.all()
+#     context = {'users': users}
+#     return render_template('users.html', **context)
+    #return render_template('users.html', parametr_name=users)  
+
 
 @app.cli.command("init-db")# Создание таблиц в базе данных
 def init_db():
@@ -73,8 +99,7 @@ def fill_tables():
     count = 5
     # Добавляем пользователей
     for user in range(1, count + 1):
-        new_user = User(username=f'user{user}',
-        email=f'user{user}@mail.ru')
+        new_user = User(username=f'user{user}', email=f'user{user}@mail.ru')
         db.session.add(new_user)  # добавлено 5 новых пользователей
     db.session.commit()           # все добавлены за 1 раз
     # Добавляем статьи
@@ -83,6 +108,13 @@ def fill_tables():
         new_post = Post(title=f'Post title {post}', content=f'Post content {post}', author=author)
         db.session.add(new_post)
     db.session.commit()
+# В терминале flask fill-db  - Наполнение тестовыми данными БД
+
+# @app.route('/users/')
+# def all_users():
+#     users = User.query.all()
+#     context = {'users': users}
+#     return render_template('users.html', **context)  
 
 
 if __name__ == "__main__":

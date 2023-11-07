@@ -1,1 +1,0 @@
-The URI tested against: file:///d:/GB/TASKS/flask1-1/instance/mydatabase.db
