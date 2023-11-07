@@ -39,7 +39,7 @@ class User(db.Model):
 if __name__ == "__main__":
     app.run(debug=True)
 
-    Traceback (most recent call last):
+    '''Traceback (most recent call last):
   File "<frozen runpy>", line 198, in _run_module_as_main
   File "<frozen runpy>", line 88, in _run_code
   File "D:\GB\TASKS\flask1-1\venv\Lib\site-packages\flask\__main__.py", line 3, in <module>
@@ -76,4 +76,4 @@ if __name__ == "__main__":
              ^^^^^^^^^^^^
   File "D:\GB\TASKS\flask1-1\venv\Lib\site-packages\flask_sqlalchemy\extension.py", line 690, in engines
     raise RuntimeError(
-RuntimeError: The current Flask app is not registered with this 'SQLAlchemy' instance. Did you forget to call 'init_app', or did you create multiple 'SQLAlchemy' instances?
+RuntimeError: The current Flask app is not registered with this 'SQLAlchemy' instance. Did you forget to call 'init_app', or did you create multiple 'SQLAlchemy' instances?'''
