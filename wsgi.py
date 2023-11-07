@@ -1,6 +1,5 @@
-import flask
+#wsgi.py
 from flask import Flask
-from Lec3_4 import app
-
+from app import app
 if __name__ == "__main__":
     app.run(debug=True)
