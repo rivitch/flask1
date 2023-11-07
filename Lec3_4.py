@@ -2,7 +2,7 @@
 #import click
 from flask import Flask
 from models_05 import db , User, Post, Comment
-from commands import cli
+#from commands import cli
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
